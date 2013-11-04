@@ -3,6 +3,7 @@ import java.util.*;
 JDice: Java Dice Rolling Program
 Copyright (C) 2006 Andrew D. Hilton  (adhilton@cis.upenn.edu)
 
+Hello! Linh Xu
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
