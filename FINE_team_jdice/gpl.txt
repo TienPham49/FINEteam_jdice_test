@@ -2,6 +2,10 @@
 		 
 		 Master NHỰT đã xuất hiện lúc này tại đây bây giờ
 		 
+		 
+		 cuối cùng thì tao cũng commit được nhờ mượn máy người khác
+		 
+		 
 		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
 
