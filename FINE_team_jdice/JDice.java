@@ -34,8 +34,7 @@ public class JDice {
 	JComboBox inputBox;
 	long lastEvent; /* hack to prevent double events with text
 			   entry */
-	public JDiceListener(JList resultList,
-			     JComboBox inputBox){
+	public JDiceListener(JList resultList, JComboBox inputBox){
 
 	    this.listItems=new Vector<String>();
 	    this.resultList=resultList;
@@ -47,23 +46,23 @@ public class JDice {
 	    if(e.getWhen()==lastEvent)
 		return;
 	    lastEvent=e.getWhen();
-	    if(e.getSource() instanceof JComboBox ||
-	       e.getActionCommand().equals(ROLL)) {
-		String s=inputBox.getSelectedItem().toString();
-		String[] arr=s.split("=");
-		String name="";
-		for(int i=0;i<arr.length-2;i++) {
-		    name=arr[i]+"=";
-		}
-		if(arr.length>=2)
-		    name=name+arr[arr.length-2];
-		doRoll(name,arr[arr.length-1]);
+	    if(e.getSource() instanceof JComboBox || e.getActionCommand().equals(ROLL))
+	    {
+			String s=inputBox.getSelectedItem().toString();
+			String[] arr=s.split("=");
+			String name="";
+			for(int i=0;i<arr.length-2;i++) {
+			    name=arr[i]+"=";
+			}
+			if(arr.length>=2)
+			    name=name+arr[arr.length-2];
+			doRoll(name,arr[arr.length-1]);
 	    }
 	    else if(e.getActionCommand().equals(CLEAR)){ 
-		doClear();
+	    	doClear();
 	    }
 	    else {
-		doRoll(null,e.getActionCommand());
+	    	doRoll(null,e.getActionCommand());
 	    }
 	}
 	private void doClear(){
@@ -71,30 +70,32 @@ public class JDice {
 	    listItems.clear()
 	    resultList.setListData(listItems);
 	}
-	privatevoid doRoll(String name,
-			    String diceString) {
+	
+	//defect privarevoid
+	private void doRoll(String name, String diceString)
+	{
 	    String prepend="";
 	    int start=0;
 	    int i;
 	    Vector<DieRoll> v=DiceParser.parseRoll(diceString);
 	    if(v==null) {
-		showError("Invalid dice string" +diceString);
-		return;
+			showError("Invalid dice string" +diceString);
+			return;
 	    }
 	    if(name!=null) {
-		listItemsadd(0,name);
-		start=1;
-		prepend="  ";
+			listItemsadd(0,name);
+			start=1;
+			prepend="  ";
 	    }
 	    int[] selectionIndices=new int[start+v.size()];
 	    for(i=0;i<v.size();i++) {
-		DieRoll dr=v.get(i);
-		RollResult rr=dr.makeRoll();
-		String toAdd=prepend+dr+"  =>  "+rr;
-		listItems.add(i+start,toAdd);
+			DieRoll dr=v.get(i);
+			RollResult rr=dr.makeRoll();
+			String toAdd=prepend+dr+"  =>  "+rr;
+			listItems.add(i+start,toAdd);
 	    }
 	    for(i=0;i<selectionIndices.length;i++) {
-		selectionIndices[i]=i;
+	    	selectionIndices[i]=i;
 	    }
 	    resultList.setListData(listItems);
 	    resultList.	setSelectedIndices(selectionIndices);
